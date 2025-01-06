@@ -1,0 +1,42 @@
+import type { VueTelInputOptions } from "./types";
+
+export const defaultOptions = {
+  allCountries: [],
+  autoFormat: true,
+  customValidate: false,
+  defaultCountry: '',
+  disabled: false,
+  autoDefaultCountry: true,
+  dropdownOptions: {
+    disabled: false,
+    showDialCodeInList: true,
+    showDialCodeInSelection: false,
+    showFlags: true,
+    showSearchBox: true,
+    searchBoxPlaceholder: '',
+    tabindex: 0,
+  },
+  ignoredCountries: [],
+  inputOptions: {
+    autocomplete: 'on',
+    autofocus: false,
+    "aria-describedby": '',
+    id: '',
+    maxlength: 25,
+    name: 'telephone',
+    showDialCode: false,
+    placeholder: 'Enter a phone number',
+    readonly: false,
+    required: false,
+    tabindex: 0,
+    type: 'tel',
+    styleClasses: '',
+  },
+  invalidMsg: '',
+  mode: 'auto',
+  onlyCountries: [],
+  preferredCountries: [],
+  styleClasses: '',
+  validCharactersOnly: false,
+
+} as const satisfies VueTelInputOptions

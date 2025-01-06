@@ -65,5 +65,8 @@
     "overrides": {
       "typescript": "5.7.2"
     }
+  },
+  "dependencies": {
+    "defu": "^6.1.4"
   }
 }

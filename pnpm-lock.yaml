@@ -10,6 +10,10 @@ overrides:
 importers:
 
   .:
+    dependencies:
+      defu:
+        specifier: ^6.1.4
+        version: 6.1.4
     devDependencies:
       '@types/jsdom':
         specifier: ^21.1.7
@@ -869,6 +873,9 @@ packages:
   deep-eql@5.0.2:
     resolution: {integrity: sha512-h5k/5U50IJJFpzfL6nO9jaaumfjO/f2NjK/oYB2Djzm4p9L+3T9qWpZqZ2hAbLPuuYq9wrU08WQyBTL5GbPk5Q==}
     engines: {node: '>=6'}
+
+  defu@6.1.4:
+    resolution: {integrity: sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==}
 
   delayed-stream@1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
@@ -2431,6 +2438,8 @@ snapshots:
   decimal.js@10.4.3: {}
 
   deep-eql@5.0.2: {}
+
+  defu@6.1.4: {}
 
   delayed-stream@1.0.0: {}
 

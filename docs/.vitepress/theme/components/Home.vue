@@ -99,15 +99,53 @@
 <script lang="ts" setup>
 import { withBase } from 'vitepress';
 import FormInput from './FormInput.vue';
-import { allProps, defaultOptions } from '../../../../src/utils';
 import { reactive, computed, ref } from 'vue';
-import type { PhoneMeta, } from 'vue-tel-input';
+import type { PhoneMeta, VueTelInputOptions } from 'vue-tel-input';
 import { VueTelInput } from 'vue-tel-input';
+import { defaultOptions } from '../../../../src/config';
 
 const phoneModel = ref('');
 const showOptions = ref(false);
 
-const phoneObject = reactive<Pick<PhoneMeta, 'formatted' | 'valid' | 'country'>>({
+const allProps = [
+  {
+    name: "autoFormat",
+    type: "Boolean",
+    default: true,
+    description: "Auto update the input to the formatted phone number when it's valid",
+    inDemo: true,
+  },
+  {
+    name: "dropdownOptions.showDialCodeInList",
+    type: "Boolean",
+    default: true,
+    description: "Show dial code in the dropdown list",
+    inDemo: true,
+  },
+  {
+    name: "dropdownOptions.showDialCodeInSelection",
+    type: "Boolean",
+    default: false,
+    description: "Show dial code in the dropdown selection",
+    inDemo: true,
+  },
+  {
+    name: "dropdownOptions.showFlags",
+    type: "Boolean",
+    default: true,
+    description: "Show flags in the dropdown selection and list",
+    inDemo: true,
+  },
+  {
+    name: "dropdownOptions.showSearchBox",
+    type: "Boolean",
+    default: false,
+    description: "Show country search box",
+    inDemo: true,
+  },
+];
+
+const phoneObject = reactive<Partial<PhoneMeta>>({
   formatted: '',
   valid: false,
   country: undefined

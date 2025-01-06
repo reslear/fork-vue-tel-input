@@ -83,12 +83,14 @@
 
 <script setup lang="ts">
   import type { PropType } from 'vue';
-  import type { CountryObject, DropdownOptions, InputOptions, PhoneMeta } from '../types';
+  import type { CountryObject, PhoneMeta, VueTelInputOptions } from '../types';
   import type { CountryCode, NumberFormat } from 'libphonenumber-js';
   import { parsePhoneNumberFromString } from 'libphonenumber-js';
-  import { computed, nextTick, onMounted, reactive, shallowRef, watch } from 'vue';
-  import { getDefault, setCaretPosition, getCountry, toLowerCase, toUpperCase } from '../utils';
+  import { computed,  nextTick, onMounted, reactive, shallowRef, watch } from 'vue';
+  import { setCaretPosition, getCountry, toLowerCase, toUpperCase } from '../utils';
   import clickOutside from '../directives/click-outside';
+  import { defaultOptions } from '../config';
+
 
   const refRoot = shallowRef<HTMLDivElement>()
   const refList = shallowRef<HTMLUListElement>()
@@ -125,68 +127,71 @@
     'space',
     'validate',
   ])
+  
+  
+  
   const props = defineProps({
     allCountries: {
-      type: Array as PropType<CountryObject[]>,
-      default: () => getDefault('allCountries') as CountryObject[],
+      type: Array as PropType<VueTelInputOptions['allCountries']>,
+      default: () => defaultOptions.allCountries,
     },
     autoFormat: {
-      type: Boolean,
-      default: () => getDefault('autoFormat') as boolean,
+      type: Boolean as PropType<VueTelInputOptions['autoFormat']>,
+      default: () => defaultOptions.autoFormat,
     },
     customValidate: {
-      type: [Boolean, RegExp],
-      default: () => getDefault('customValidate') as boolean,
+      type: [Boolean, RegExp] as PropType<VueTelInputOptions['customValidate']>,
+      default: () => defaultOptions.customValidate,
     },
     defaultCountry: {
       // Default country code, ie: 'AU'
       // Will override the current country of user
-      type: [String, Number],
-      default: () => getDefault('defaultCountry') as string,
+      type: [String, Number] as PropType<VueTelInputOptions['defaultCountry']>,
+      default: () => defaultOptions.defaultCountry,
     },
     disabled: {
-      type: Boolean,
-      default: () => getDefault('disabled') as boolean,
+      type: Boolean as PropType<VueTelInputOptions['disabled']>,
+      default: () => defaultOptions.disabled,
     },
     autoDefaultCountry: {
-      type: Boolean,
-      default: () => getDefault('autoDefaultCountry') as boolean,
+      type: Boolean as PropType<VueTelInputOptions['autoDefaultCountry']>,
+        default: () => defaultOptions.autoDefaultCountry,
     },
     dropdownOptions: {
-      type: Object as PropType<DropdownOptions>,
-      default: () => getDefault('dropdownOptions') as DropdownOptions,
+      type: Object as PropType<VueTelInputOptions['dropdownOptions']>,
+        default: () => defaultOptions.dropdownOptions,
     },
     ignoredCountries: {
-      type: Array as PropType<string[]>,
-      default: () => getDefault('ignoredCountries') as never[],
+      type: Array as PropType<VueTelInputOptions['ignoredCountries']>,
+      default: () => defaultOptions.ignoredCountries,
     },
     inputOptions: {
-      type: Object as PropType<InputOptions>,
-      default: () => getDefault('inputOptions') as InputOptions,
+      type: Object as PropType<VueTelInputOptions['inputOptions']>,
+      default: () => defaultOptions.inputOptions,
     },
     invalidMsg: {
-      type: String,
-      default: () => getDefault('invalidMsg') as string,
+      type: String as PropType<VueTelInputOptions['invalidMsg']>,
+      default: () => defaultOptions.invalidMsg,
     },
     mode: {
-      type: String as PropType<'auto' | Lowercase<NumberFormat>>,
-      default: () => getDefault('mode') as 'auto',
+      type: String as PropType<VueTelInputOptions['mode']>,
+      default: () => defaultOptions.mode,
     },
     onlyCountries: {
-      type: Array as PropType<string[]>,
-      default: () => getDefault('onlyCountries') as never[],
+      type: Array as PropType<VueTelInputOptions['onlyCountries']>,
+      default: () => defaultOptions.onlyCountries,
     },
     preferredCountries: {
-      type: Array as PropType<string[]>,
-      default: () => getDefault('preferredCountries') as never[],
+      type: Array as PropType<VueTelInputOptions['preferredCountries']>,
+      default: () => defaultOptions.preferredCountries,
     },
     validCharactersOnly: {
-      type: Boolean,
-      default: () => getDefault('validCharactersOnly') as boolean,
+      type: Boolean as PropType<VueTelInputOptions['validCharactersOnly']>,
+      default: () => defaultOptions.validCharactersOnly,
     },
     styleClasses: {
-      type: [String, Array, Object],
-      default: () => getDefault('styleClasses') as string,
+      type: [String, Array, Object] as PropType<VueTelInputOptions['styleClasses']>,
+      default: () => defaultOptions.styleClasses,
     },
   })
 

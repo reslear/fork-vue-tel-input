@@ -1,37 +1,16 @@
+
 import type { Plugin } from 'vue';
 import VueTelInput from './components/vue-tel-input.vue';
-import utils, { defaultOptions } from './utils';
+import { VueTelInputOptions } from './types'
 
 export * from './types'
-
 export { VueTelInput };
 
 export default {
-  install(app, customOptions = {}) {
-    const {
-      dropdownOptions: customDropdownOptions,
-      inputOptions: customInputOptions,
-      ...otherCustomOptions
-    } = customOptions;
-    const {
-      dropdownOptions: defaultDropdownOptions,
-      inputOptions: defaultInputOptions,
-      ...otherDefaultOptions
-    } = defaultOptions;
+  install(app, options: Partial<VueTelInputOptions> = {}) {
 
-    utils.options = {
-      inputOptions: {
-        ...defaultInputOptions,
-        ...customInputOptions,
-      },
-      dropdownOptions: {
-        ...defaultDropdownOptions,
-        ...customDropdownOptions,
-      },
-      ...otherDefaultOptions,
-      ...otherCustomOptions,
-    };
+    app.provide('vue-tel-input-options', options)
 
-    app.component('vue-tel-input', VueTelInput);
+    app.component('VueTelInput', options);
   },
-} as Plugin;
+} as Plugin<VueTelInputOptions>;

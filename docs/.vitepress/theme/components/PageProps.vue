@@ -1,12 +1,12 @@
 <template>
   <main class="vp-doc">
-    <template v-for="prop in allProps">
-      <h2>{{ prop.name }}</h2>
+    <template v-for="prop in props">
+      <h2>{{ prop.key }}</h2>
       <ul>
-        <li>Type: <span v-html="getType(prop.type)"></span></li>
+        <li>Type: <span v-html="getType(prop.value)"></span></li>
         <li>
           Default:
-          <span v-if="prop.name === 'allCountries'">
+          <span v-if="prop.key === 'allCountries'">
             An array of all countries, see
             <a
               target="_blank"
@@ -15,16 +15,17 @@
               <code>allCountries.js</code>
             </a>
           </span>
-          <code v-else-if="prop.default !== ''" >{{ getDefault(prop) }}</code>
+          <code v-else-if="prop.value !== ''" >{{ getDefault(prop) }}</code>
         </li>
       </ul>
-      <p v-html="prop.description"></p>
     </template>
   </main>
 </template>
 
 <script lang="ts" setup>
-import { allProps } from '../../../../src/utils';
+import { defaultOptions } from '../../../../src/config';
+
+const props = Object.keys(defaultOptions).map((key) => ({ key, value: defaultOptions[key] }));
 
 function getType(type: any): string {
   if (type.length === 1) {

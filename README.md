@@ -2,6 +2,8 @@
 <img width="100" alt="vue-tel-input-logo" src="https://iamstevendao.com/vue-tel-input/hero.png"/>
 </p>
 
+> NOTE: This library is a port of [intl-tel-input](https://github.com/jackocnr/intl-tel-input), which now has its own [Vue component](https://github.com/jackocnr/intl-tel-input/tree/master/vue)!
+
 # vue-tel-input
 
 International Telephone Input with Vue.
